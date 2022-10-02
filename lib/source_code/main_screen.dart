@@ -15,11 +15,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wisata Turis"),
+        title: Text("Tourism Place"),
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          final TourismPlace place = tourismPlaceList[index];
+          final TourismPlace hotel = tourismPlaceList[index];
           return InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -41,15 +41,15 @@ class _MainScreenState extends State<MainScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 40,),
-                    Image.network(place.imageUrls[0], width: 500,),
+                    Image.network(hotel.imageUrls[0], height: 200, width: 500,),
                     SizedBox(height: 15,),
-                    Text(place.name,
+                    Text(hotel.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         // fontSize: 40,
                       ),),
                     SizedBox(height: 10,),
-                    Text(place.ticketPrice,
+                    Text(hotel.ticketPrice,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         // fontSize: 40,
