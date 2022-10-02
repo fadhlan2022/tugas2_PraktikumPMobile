@@ -12,20 +12,20 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  @override
   bool toggle = false;
 
+  @override
   Widget build(BuildContext context) {
-    final TourismPlace tourism_place = tourismPlaceList[widget.albumIdx];
+    final TourismPlace tourismPlace = tourismPlaceList[widget.albumIdx];
     return Scaffold(
         appBar: AppBar(
-          title: Text(tourism_place.name),
+          title: Text(tourismPlace.name),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: IconButton(
                 icon:
-                toggle ? Icon(Icons.favorite_border) : Icon(Icons.favorite),
+                toggle ? const Icon(Icons.favorite_border) : const Icon(Icons.favorite),
                 onPressed: () {
                   setState(() {
                     toggle = !toggle;
@@ -34,13 +34,15 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: IconButton(
-                  icon: Icon(Icons.share),
+                  icon: const Icon(Icons.share),
                   onPressed: () async {
-                    if (!await launch(tourism_place
-                        .imageAsset)) throw 'Could not launch ${tourism_place
+                    if (!await launch(tourismPlace
+                        .imageAsset)) {
+                      throw 'Could not launch ${tourismPlace
                         .imageAsset}';
+                    }
                   }
               ),
             )
@@ -54,21 +56,21 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Image.network(tourism_place.imageAsset),
+                      child: Image.network(tourismPlace.imageAsset),
                     ),
                     Text(
-                      tourism_place.name,
+                      tourismPlace.name,
                       style:
-                      TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                      const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                     ),
-                    Text("Lokasi --> ${tourism_place.location}"),
-                    Text(tourism_place.description),
-                    Text("Harga Tiket --> ${tourism_place.ticketPrice}"),
-                    Text("${tourism_place.openDays} | ${tourism_place.openTime}"),
+                    Text("Lokasi --> ${tourismPlace.location}"),
+                    Text(tourismPlace.description),
+                    Text("Harga Tiket --> ${tourismPlace.ticketPrice}"),
+                    Text("${tourismPlace.openDays} | ${tourismPlace.openTime}"),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Card(
@@ -76,7 +78,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
+                    children: const [
                       ListTile(
                         leading: Text(
                           "# |",
@@ -101,7 +103,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ]));
   }
  Widget _build_tourismlist() {
-   TourismPlace tourism_place = tourismPlaceList[widget.albumIdx];
+   TourismPlace tourismPlace = tourismPlaceList[widget.albumIdx];
    return ListView.builder(
        itemBuilder: (context, index) {
          return InkWell(
@@ -112,15 +114,15 @@ class _DetailScreenState extends State<DetailScreen> {
                    children: [
                      ListTile(
                        leading: Text("${index + 1} |"),
-                       title: Text(tourism_place.imageUrls[index]),
+                       title: Text(tourismPlace.imageUrls[index]),
                      ),
-                     Image.network(tourism_place.imageUrls[index]),
+                     Image.network(tourismPlace.imageUrls[index]),
                    ],
                  ),
                )
            ),
          );
        },
-       itemCount: tourism_place.imageUrls.length);
+       itemCount: tourismPlace.imageUrls.length);
  }
 }
